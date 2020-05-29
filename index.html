@@ -187,10 +187,7 @@
   var wizardWidth = 70;
 
   function getFireballSpeed (isAgainstWind) {
-    if (!isAgainstWind) {
-      return 5;
-    }
-    return 2;
+    return isAgainstWind ? 5 : 2;
   }
 
   function getWizardHeight () {
