@@ -48,8 +48,6 @@ var renderScoreBar = function (ctx, playerName, i, currentBarHeight) {
   ctx.fillRect(CLOUD_X + GAP * 3 + (BAR_GAP + BAR_WIDTH) * i, CLOUD_Y + GAP * 2 + FONT_GAP * 3 + BAR_HEIGHT_MAX - currentBarHeight, BAR_WIDTH, currentBarHeight);
 };
 
-//Думал сделать без проверки, просто вывести внутри функции и счёт, и имя, чтобы в renderStatistics был только один вызов. Какой вариант лучше?
-//Просто эта проверка не делает функцию менее специфичной, у меня ощущение, как будто это все излишне нагромождено...
 var renderText = function (ctx, text, i, currentBarHeight) {
   ctx.fillStyle = '#000';
   if (typeof (text) === 'number') {
