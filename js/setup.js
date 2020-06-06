@@ -7,10 +7,7 @@ var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARD_NUMBER = 4;
 
 var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
-
 var similarListElement = userDialog.querySelector('.setup-similar-list');
-
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 var getRandomInt = function (min, max) {
@@ -56,6 +53,8 @@ var postWizards = function (wizards) {
   }
   similarListElement.appendChild(fragment);
 };
+
+userDialog.classList.remove('hidden');
 
 postWizards(createWizards());
 
