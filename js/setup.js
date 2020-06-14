@@ -125,14 +125,14 @@ userNameInput.addEventListener('input', function () {
   }
 });
 
-var changeColor = function (array, element, inputName) {
+var changeColor = function (array, element, inputID) {
   var color = array[getRandomInt(0, array.length)];
   if (element === userFireball) {
     element.style.backgroundColor = color;
   } else {
     element.style.fill = color;
   }
-  userDialog.querySelector("input[name='" + inputName + "']").value = color;
+  userDialog.querySelector('#' + inputID).value = color;
 };
 
 userCoat.addEventListener('click', function () {
