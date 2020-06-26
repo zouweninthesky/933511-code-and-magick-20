@@ -1,15 +1,18 @@
 'use strict';
 
-// Модуль create-wizards.js
 (function () {
-  var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-  var WIZARD_NUMBER = 4;
+  // var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+  // var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+  // var WIZARD_NUMBER = 4;
+
+  var MAX_SIMILAR_WIZARD_COUNT = 4;
+
+  var userDialog = document.querySelector('.setup');
 
   var similarListElement = document.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
-  var createName = function (names, surnames) {
+  /*  var createName = function (names, surnames) {
     var flip = window.util.getRandomInt(0, 2);
     if (flip) {
       return (names[window.util.getRandomInt(0, names.length)] + ' ' + surnames[window.util.getRandomInt(0, surnames.length)]);
@@ -29,26 +32,27 @@
     }
     return wizards;
   };
+  */
 
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
     wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyeColor;
 
     return wizardElement;
   };
 
-  var createWizardsFragment = function (wizards) {
+  var onLoad = function (wizards) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < wizards.length; i++) {
-      fragment.appendChild(renderWizard(wizards[i]));
+    for (var i = 0; i < MAX_SIMILAR_WIZARD_COUNT; i++) {
+      fragment.appendChild(renderWizard(wizards[window.util.getRandomInt(0, wizards.length)]));
     }
     similarListElement.appendChild(fragment);
+
+    userDialog.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  window.postWizards = function () {
-    createWizardsFragment(createWizardsMocks());
-  };
+  window.backend.load(onLoad, window.backend.onError);
 })();

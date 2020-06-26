@@ -2,7 +2,9 @@
 
 // Модуль validation.js
 (function () {
-  var userNameInput = document.querySelector('.setup-user-name');
+  var userDialog = document.querySelector('.setup');
+  var form = userDialog.querySelector('.setup-wizard-form');
+  var userNameInput = form.querySelector('.setup-user-name');
 
   userNameInput.addEventListener('invalid', function () {
     if (userNameInput.validity.valueMissing) {
@@ -23,4 +25,14 @@
       userNameInput.setCustomValidity('');
     }
   });
+
+  var onSuccess = function () {
+    userDialog.classList.add('hidden');
+  };
+
+  var onSubmit = function (evt) {
+    window.backend.save(new FormData(form), onSuccess, window.backend.onError);
+    evt.preventDefault();
+  };
+  form.addEventListener('submit', onSubmit);
 })();

@@ -13,7 +13,7 @@ window.colorize(window.colorSettings.coats, userCoat, 'coat-color', userDialog);
 window.colorize(window.colorSettings.eyes, userEyes, 'eyes-color', userDialog);
 window.colorize(WIZARD_FIREBALLS, userFireball, 'fireball-color', userDialog);
 
-window.postWizards();
+// window.postWizards();
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
