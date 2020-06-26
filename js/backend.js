@@ -10,9 +10,9 @@
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      try {
+      if (xhr.status === 200) {
         onSuccess(xhr.response);
-      } catch (err) {
+      } else {
         onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
       }
     });
@@ -34,17 +34,41 @@
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      onSuccess(xhr.response);
+      if (xhr.status === 200) {
+        onSuccess(xhr.response);
+      } else {
+        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+      }
     });
+    xhr.addEventListener('error', function () {
+      onError('Произошла ошибка соединения');
+    });
+    xhr.addEventListener('timeout', function () {
+      onError('Запрос не успел выполниться за ' + xhr.timeout / 1000 + ' с');
+    });
+
+    xhr.timeout = TIMEOUT_IN_MS;
+
     xhr.open('POST', UP_URL);
-    try {
-      xhr.send(data);
-    } catch (err) {
-      onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
-    }
+    xhr.send(data);
+  };
+
+  var onError = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red; line-height: 80px';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '20px';
+    node.style.textTransform = 'uppercase';
+    node.style.letterSpacing = '10px';
+
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
   };
 
   window.backend = {
+    onError: onError,
     load: load,
     save: save
   };
