@@ -52,4 +52,9 @@
   };
 
   window.backend.load(onLoad, window.backend.onError);
+
+  window.createWizards = {
+    onEyesChange: onEyesChange,
+    onCoatChange: onCoatChange
+  }
 })();
