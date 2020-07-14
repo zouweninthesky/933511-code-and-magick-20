@@ -2,7 +2,7 @@
 
 (function () {
   var DOWN_URL = 'https://javascript.pages.academy/code-and-magick/data';
-  var UP_URL = 'https://javascript.pages.academy/code-and-magick';
+  var UP_URL = 'https://javascript.pages.acadmy/code-and-magick';
   var TIMEOUT_IN_MS = 10000;
 
   var load = function (onSuccess, onError) {

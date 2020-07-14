@@ -56,5 +56,5 @@
   window.createWizards = {
     onEyesChange: onEyesChange,
     onCoatChange: onCoatChange
-  }
+  };
 })();
