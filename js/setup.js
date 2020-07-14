@@ -25,7 +25,7 @@ var colorizeFireball = function (array, inputID, destination) {
   userFireball.addEventListener('click', function () {
     window.colorize(array, userFireball, inputID, destination);
   });
-}
+};
 
 colorizeCoats(window.colorSettings.coats, 'coat-color', userDialog);
 colorizeEyes(window.colorSettings.eyes, 'eyes-color', userDialog);
